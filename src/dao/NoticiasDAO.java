@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Comentario;
 import model.Noticia;
 
 public class NoticiasDAO {
@@ -34,9 +35,34 @@ public class NoticiasDAO {
 		return status;
 	}
 
+	public int criarComentario(Comentario comentario) {
+		
+		int status = 0;
+		
+		String sqlInsert = "INSERT INTO comentario(nome, texto, fk_noticia_id) VALUES (?, ?, ?)";
+
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
+			stm.setString(1, comentario.getNome());
+			stm.setString(2, comentario.getTexto());
+			stm.setInt(3, comentario.getIdNoticia());
+			int exec = stm.executeUpdate();
+			if(exec == 1){
+				status = 2;
+			}else {
+				status =  1;
+			}
+		} catch (SQLException e) {
+			status =  1;
+			e.printStackTrace();
+		}
+		return status;
+	}
+
+	
 	public int atualizar(Noticia noticia) {
 		int status = 0;
-		String sqlUpdate = "UPDATE noticia SET descricao=?, titulo=?, texto=? WHERE id=?";
+		String sqlUpdate = "UPDATE NOTICIA SET DESCRICAO = ?, TITULO = ?, TEXTO = ? WHERE ID = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
@@ -57,7 +83,7 @@ public class NoticiasDAO {
 	}
 
 	public void excluir(int id) {
-		String sqlDelete = "DELETE FROM noticia WHERE id = ?";
+		String sqlDelete = "DELETE FROM NOTICIA WHERE ID = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
@@ -98,6 +124,37 @@ public class NoticiasDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return noticia;
+	}
+	
+	
+	public ArrayList<Comentario> listagemComentario() {
+		ArrayList<Comentario> comentario = new ArrayList<Comentario>();
+		String sqlSelect = "SELECT * FROM COMENTARIO";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			
+			try (ResultSet rs = stm.executeQuery();) {
+				
+				while (rs.next()) {
+					Comentario nt = new Comentario();
+					
+					nt.setIdComentario(rs.getInt("ID"));
+					nt.setNome(rs.getString("NOME"));
+					nt.setTexto(rs.getString("TEXTO"));
+					nt.setIdNoticia(rs.getInt("FK_NOTICIA_ID"));
+					comentario.add(nt);					
+				}
+				
+				rs.close();
+				stm.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return comentario;
 	}
 	
 	public Noticia carregar(int id) {
