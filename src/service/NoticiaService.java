@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 
 import dao.NoticiasDAO;
+import model.Comentario;
 import model.Noticia;
 
 public class NoticiaService {
@@ -11,6 +12,10 @@ public class NoticiaService {
 
 	public int criar(Noticia noticia) {
 		return dao.criar(noticia);
+	}
+	
+	public int criarComentario(Comentario comentario) {
+		return dao.criarComentario(comentario);
 	}
 
 	public int atualizar(Noticia noticia) {
@@ -29,4 +34,8 @@ public class NoticiaService {
 		return dao.listagem();
 	}
 
+	public ArrayList<Comentario> listaNoticiasComentario() {
+		return dao.listagemComentario();
+	}
+	
 }

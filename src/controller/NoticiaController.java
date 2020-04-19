@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Comentario;
 import model.Noticia;
 import service.NoticiaService;
 
@@ -120,13 +121,30 @@ public class NoticiaController extends HttpServlet {
 				requestDispatcher.forward(request, response);
 			}
 		}
-		
+
 		if (request_URI.endsWith("delete.do")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			NoticiaService nts = new NoticiaService();
 			nts.excluir(id);
 			requestDispatcher = request.getRequestDispatcher("sucesso.html");
-			requestDispatcher.forward(request, response);			
+			requestDispatcher.forward(request, response);
+		}
+
+		if (request_URI.endsWith("addComent.do")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			String nomeUser = request.getParameter("nomeUser");
+			String comentarioUser = request.getParameter("comentarioUser");
+			NoticiaService nts = new NoticiaService();
+			
+
+			Comentario comentario = new Comentario();
+			comentario.setIdNoticia(id);
+			comentario.setNome(nomeUser);
+			comentario.setTexto(comentarioUser);
+			
+			nts.criarComentario(comentario);
+			requestDispatcher = request.getRequestDispatcher("listanoticia.jsp");
+			requestDispatcher.forward(request, response);
 		}
 	}
 
