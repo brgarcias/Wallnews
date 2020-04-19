@@ -9,26 +9,27 @@ import model.Noticia;
 public class NoticiasDAO {
 
 	public int criar(Noticia noticia) {
+		
+		int status = 0;
+		
 		String sqlInsert = "INSERT INTO noticia(descricao, titulo, texto) VALUES (?, ?, ?)";
-		// usando o try with resources do Java 7, que fecha o que abriu
+
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
 			stm.setString(1, noticia.getDescricao());
 			stm.setString(2, noticia.getTitulo());
 			stm.setString(3, noticia.getTexto());
-			stm.execute();
-			String sqlQuery = "SELECT LAST_INSERT_ID()";
-			try (PreparedStatement stm2 = conn.prepareStatement(sqlQuery); ResultSet rs = stm2.executeQuery();) {
-				if (rs.next()) {
-					noticia.setId(rs.getInt(1));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+			int exec = stm.executeUpdate();
+			if(exec == 1){
+				status = 2;
+			}else {
+				status =  1;
 			}
 		} catch (SQLException e) {
+			status =  1;
 			e.printStackTrace();
 		}
-		return noticia.getId();
+		return status;
 	}
 
 	public void atualizar(Noticia noticia) {
