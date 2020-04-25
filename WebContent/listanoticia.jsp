@@ -42,7 +42,6 @@ ArrayList<Noticia> nt = nts.listagem();
 						Comentario coment = new Comentario();
 						
                         if (nt.get(i).getId() == cm.get(n).getIdNoticia()) {
-    						System.out.println("TRUE" + not.getIdNoticia());
 							coment.setIdComentario(i);
 	                        coment.setIdNoticia(cm.get(n).getIdNoticia());
 	                        coment.setNome(cm.get(n).getNome());
@@ -62,18 +61,19 @@ ArrayList<Noticia> nt = nts.listagem();
 					<p class="card-text"><%=comentarioNt.get(d).getDescricao()%></p>
 					
 					<%
+					if(comentarioNt.get(d).getComentario() != null){
 					for (int c = 0; c < comentarioNt.get(d).getComentario().size(); ++c) {
 						System.out.println("Nome: "+comentarioNt.get(d).getComentario().get(c).getNome());
 					%>
 					<p class="card-text">Nome: <%=comentarioNt.get(d).getComentario().get(c).getNome()%></p>
 					<p class="card-text">Comentario: <%=comentarioNt.get(d).getComentario().get(c).getTexto()%></p>
 						
-					<% } %>
+					<% } }%>
 					<form action="addComent.do" method="GET">
 							Nome: <input type="text" class="form-control" id="nomeUser" name="nomeUser"> <br> 
-							Coment·rio: <input type="text" class="form-control" id="comentarioUser" name="comentarioUser"> <br> 
+							Coment√°rio: <input type="text" class="form-control" id="comentarioUser" name="comentarioUser"> <br> 
 							<input type='hidden' name='id' value='<%=comentarioNt.get(d).getIdNoticia()%>'>
-							<input type="submit" class="btn btn-primary" type="submit" value="Adicionar Coment·rio">
+							<input type="submit" class="btn btn-primary" type="submit" value="Adicionar Coment√°rio">
 						</form>
 				</div>
 					<%
