@@ -14,26 +14,26 @@
 <body>
 	
 	<div id="voltar" class="vertical-menu">
-	  <a href="index.html" class="active">Voltar para o início</a>
+	  <a href="index.html" class="active">Voltar para o inÃ­cio</a>
 	</div>
 
-	<h2>Adicionar uma Notícia</h2>
+	<h2>Adicionar uma NotÃ­cia</h2>
 
 	<form method="POST" action="addNoticia.do">
 	  <div class="form-group">
-	    <label for="tituloNoticia">Título da Notícia</label>
-	    <input type="text" id="tituloNoticia" class="form-control">
+	    <label for="tituloNoticia">TÃ­tulo da NotÃ­cia</label>
+	    <input type="text" id="tituloNoticia" name="titulo" class="form-control">
 	  </div>
 	  <div class="form-group">
-	    <label for="descricaoNoticia">Descrição da Notícia</label>
-	    <input type="text" id="descricaoNoticia" class="form-control">
+	    <label for="descricaoNoticia">DescriÃ§Ã£o da NotÃ­cia</label>
+	    <input type="text" id="descricaoNoticia" name="descricao" class="form-control">
 	  </div>
 	  <div class="form-group">
-	    <label for="textoNoticia">Texto da Notícia</label>
-	    <textarea id="textoNoticia" rows="3"></textarea>
+	    <label for="textoNoticia">Texto da NotÃ­cia</label>
+	    <textarea id="textoNoticia" name="texto" rows="3"></textarea>
 	  </div>
 	  <div class="form-button">
-		<input id="addNoticia" type="submit" value="Adicionar Notícia" />
+		<input id="addNoticia" type="submit" value="Adicionar NotÃ­cia" />
 	  </div>
 	</form>
 	
