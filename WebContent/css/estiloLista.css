@@ -1,0 +1,71 @@
+/*==================================
+* Author        : "brgarcias"
+* Template Name : Wallnews
+* Version       : 1.0
+==================================== */
+
+/*==================================
+
+font-family: 'Poppins', sans-serif;
+
+==================================== */
+
+/*=========== TABLE OF CONTENTS ===========
+
+1. Listagem Noticia
+===========*/
+
+/*-------------------------------------
+		1.Listagem
+--------------------------------------*/
+
+.vertical-menu {
+  width: 200px;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#voltar{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+h2{
+	margin-left: 40px;
+	margin-top: 10px;
+}
+
+#addNoticia{
+	margin-top: 1cm;
+	margin-left: 1cm;
+}
+
+label, input[type=submit], input[type=text], textarea{
+	display: block;
+}
+
+input[type=submit]{
+	background: #2F4F4F;
+	color: #ffffff;
+	cursor: pointer;
+	padding: 10px 20px;
+	border: 0;
+}
+input[type=submit]:hover{
+	background: #4CAF50;
+}

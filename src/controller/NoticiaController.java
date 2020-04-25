@@ -76,10 +76,16 @@ public class NoticiaController extends HttpServlet {
 				requestDispatcher = request.getRequestDispatcher("notexisted.html");
 				requestDispatcher.forward(request, response);
 			} else {
-				response.setContentType("text/html");
+				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
 
 				out.println("<html>");
+				out.println("<head>");
+				out.println("<!--estiloLista.css-->");
+				out.println("<link rel='stylesheet'  href='<%=request.getContextPath()%>/css/estiloLista.css' type='text/css' />"); 
+				out.println("<link rel='stylesheet'  href='<%=request.getContextPath()%>/css/bootstrap.css' type='text/css' />");
+				out.println("<title>Editar notícia</title>");
+				out.println("</head>");
 				out.println("<body bgcolor='lightblue'>");
 				out.println("<br><br><br>");
 				out.println("<form method='POST' action='update.do'>");
