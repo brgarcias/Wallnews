@@ -7,8 +7,11 @@
 <head>
 <meta charset="ISO-8859-1">
 
-<!--bootstrap.css-->
-<link rel="stylesheet" href="css/bootstrap.css" />
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 
 <!--estiloLista.css-->
 <link rel="stylesheet" href="css/estiloLista.css" />
@@ -29,7 +32,7 @@
 			for (Noticia nt : nts.listagem()) {
 			%>
 			<tr>
-				<a href="listanoticia.jsp" class="list-group-item list-group-item-action">
+				<a href="noticia.do?id=<%=nt.getId()%>" class="list-group-item list-group-item-action">
 				    <div class="d-flex w-100 justify-content-between">
 				      <h5 class="mb-1"><td><%=nt.getTitulo()%></td></h5>
 				      <small>3 days ago</small>
@@ -44,10 +47,12 @@
 				}
 			%>
 	</tbody>
-	
-	<div id="addNoticia" class="vertical-menu">
-	  <a href="cadastro.html">Adicionar outra Notícia</a>
-	</div>
+
+	<form method="POST" action="cadastro.html">
+		<div class="form-button">
+			<input id="addNoticia" type="submit" value="Adicionar outra Notícia" />
+	 	</div>
+	</form>
 
 </body>
 </html>

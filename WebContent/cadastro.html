@@ -4,36 +4,40 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <!--bootstrap.css-->
-<link rel="stylesheet" href="css/bootstrap.css" />
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 
 <!--estilo.css-->
 <link rel="stylesheet" href="css/estilo.css" />
 
-<title>Adicionar Noticia</title>
+<title>Adicionar Notícia</title>
 </head>
 <body>
 	
 	<div id="voltar" class="vertical-menu">
-	  <a href="index.html" class="active">Voltar para o inÃ­cio</a>
+	  <a href="index.html" class="active">Voltar para o início</a>
 	</div>
 
-	<h2>Adicionar uma NotÃ­cia</h2>
+	<h2>Adicionar uma Notícia</h2>
 
 	<form method="POST" action="addNoticia.do">
 	  <div class="form-group">
-	    <label for="tituloNoticia">TÃ­tulo da NotÃ­cia</label>
+	    <label for="tituloNoticia">Título da Notícia</label>
 	    <input type="text" id="tituloNoticia" name="titulo" class="form-control">
 	  </div>
 	  <div class="form-group">
-	    <label for="descricaoNoticia">DescriÃ§Ã£o da NotÃ­cia</label>
+	    <label for="descricaoNoticia">Descrição da Notícia</label>
 	    <input type="text" id="descricaoNoticia" name="descricao" class="form-control">
 	  </div>
 	  <div class="form-group">
-	    <label for="textoNoticia">Texto da NotÃ­cia</label>
+	    <label for="textoNoticia">Texto da Notícia</label>
 	    <textarea id="textoNoticia" name="texto" rows="3"></textarea>
 	  </div>
 	  <div class="form-button">
-		<input id="addNoticia" type="submit" value="Adicionar NotÃ­cia" />
+		<input id="addNoticia" type="submit" value="Adicionar Notícia" />
 	  </div>
 	</form>
 	
