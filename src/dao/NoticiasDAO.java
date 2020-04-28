@@ -93,6 +93,18 @@ public class NoticiasDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void excluirComentario(int id) {
+		String sqlDelete = "DELETE FROM comentario WHERE fk_noticia_id = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
+			stm.setInt(1, id);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Noticia> listagem() {
 		ArrayList<Noticia> noticia = new ArrayList<Noticia>();
@@ -127,12 +139,13 @@ public class NoticiasDAO {
 	}
 	
 	
-	public ArrayList<Comentario> listagemComentario() {
+	public ArrayList<Comentario> listagemComentario(int id) {
 		ArrayList<Comentario> comentario = new ArrayList<Comentario>();
-		String sqlSelect = "SELECT * FROM COMENTARIO";
+		String sqlSelect = "SELECT * FROM COMENTARIO where FK_NOTICIA_ID = ? ";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			
+				stm.setInt(1, id);
+				stm.execute();
 			try (ResultSet rs = stm.executeQuery();) {
 				
 				while (rs.next()) {
