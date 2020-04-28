@@ -142,6 +142,7 @@ public class NoticiaController extends HttpServlet {
 			Noticia noticia = nts.carregar(id);
 			
 			
+			
 			requestDispatcher = request.getRequestDispatcher("listanoticia.jsp");
 			requestDispatcher.forward(request, response);
 
