@@ -25,6 +25,10 @@ public class NoticiaService {
 	public void excluir(int id) {
 		dao.excluir(id);
 	}
+	
+	public void excluirComentario(int id) {
+		dao.excluirComentario(id);
+	}
 
 	public Noticia carregar(int id) {
 		return dao.carregar(id);
@@ -34,8 +38,8 @@ public class NoticiaService {
 		return dao.listagem();
 	}
 
-	public ArrayList<Comentario> listaNoticiasComentario() {
-		return dao.listagemComentario();
+	public ArrayList<Comentario> listaNoticiasComentario(int id) {
+		return dao.listagemComentario(id);
 	}
 	
 }

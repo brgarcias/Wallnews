@@ -131,6 +131,7 @@ public class NoticiaController extends HttpServlet {
 		if (request_URI.endsWith("delete.do")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			NoticiaService nts = new NoticiaService();
+			nts.excluirComentario(id);
 			nts.excluir(id);
 			requestDispatcher = request.getRequestDispatcher("sucesso.html");
 			requestDispatcher.forward(request, response);
@@ -140,9 +141,7 @@ public class NoticiaController extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			NoticiaService nts = new NoticiaService();
 			Noticia noticia = nts.carregar(id);
-			
-			
-			
+			request.setAttribute("noticia", noticia);
 			requestDispatcher = request.getRequestDispatcher("listanoticia.jsp");
 			requestDispatcher.forward(request, response);
 
@@ -161,8 +160,7 @@ public class NoticiaController extends HttpServlet {
 			comentario.setTexto(comentarioUser);
 			
 			nts.criarComentario(comentario);
-			requestDispatcher = request.getRequestDispatcher("listanoticia.jsp");
-			requestDispatcher.forward(request, response);
+			response.sendRedirect("noticia.do?id="+id);
 		}
 	}
 

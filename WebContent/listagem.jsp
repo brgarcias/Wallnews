@@ -35,7 +35,7 @@
 				<a href="noticia.do?id=<%=nt.getId()%>" class="list-group-item list-group-item-action">
 				    <div class="d-flex w-100 justify-content-between">
 				      <h5 class="mb-1"><td><%=nt.getTitulo()%></td></h5>
-				      <small>3 days ago</small>
+				      <small>1 dia atrás</small>
 				    </div>
 				    <p class="mb-1"><td><%=nt.getDescricao()%></td>.</p>
 				    <small><td><%=nt.getId()%></td></small>
