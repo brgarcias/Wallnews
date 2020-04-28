@@ -21,6 +21,7 @@ font-family: 'Poppins', sans-serif;
 
 .vertical-menu {
   width: 200px;
+  text-decoration: underline white; 
 }
 
 .vertical-menu a {
@@ -50,11 +51,6 @@ h2{
 	margin-top: 10px;
 }
 
-#addNoticia{
-	margin-top: 1cm;
-	margin-left: 1cm;
-}
-
 label, input[type=submit], input[type=text], textarea{
 	display: block;
 }
@@ -68,4 +64,17 @@ input[type=submit]{
 }
 input[type=submit]:hover{
 	background: #4CAF50;
+}
+
+h1{
+	margin-left: 40px;
+	margin-top: 10px;
+}
+hr{
+	margin-left: 40px;
+	margin-right: 40px;
+}
+.card{
+	margin-left: 40px;
+	margin-right: 40px;
 }

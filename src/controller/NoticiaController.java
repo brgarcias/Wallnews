@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Comentario;
 import model.Noticia;
+import model.NoticiaComentario;
 import service.NoticiaService;
 
 /**
@@ -81,9 +82,8 @@ public class NoticiaController extends HttpServlet {
 
 				out.println("<html>");
 				out.println("<head>");
-				out.println("<!--estiloLista.css-->");
-				out.println("<link rel='stylesheet'  href='<%=request.getContextPath()%>/css/estiloLista.css' type='text/css' />"); 
-				out.println("<link rel='stylesheet'  href='<%=request.getContextPath()%>/css/bootstrap.css' type='text/css' />");
+				out.println("<link rel='stylesheet'  href='<%=request.getContextPath()%>/css/estiloLista.css' />"); 
+				out.println("<link rel='stylesheet'  href='<%=request.getContextPath()%>/css/bootstrap.css' />");
 				out.println("<title>Editar notícia</title>");
 				out.println("</head>");
 				out.println("<body bgcolor='lightblue'>");
@@ -136,6 +136,18 @@ public class NoticiaController extends HttpServlet {
 			requestDispatcher.forward(request, response);
 		}
 
+		if (request_URI.endsWith("noticia.do")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			NoticiaService nts = new NoticiaService();
+			Noticia noticia = nts.carregar(id);
+			
+			
+			
+			requestDispatcher = request.getRequestDispatcher("listanoticia.jsp");
+			requestDispatcher.forward(request, response);
+
+		}
+		
 		if (request_URI.endsWith("addComent.do")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			String nomeUser = request.getParameter("nomeUser");
