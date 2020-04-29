@@ -17,7 +17,7 @@
 	crossorigin="anonymous">
 	
 	<!--estiloLista.css-->
-<link rel="stylesheet" href="css/estiloLista.css" />
+<link rel="stylesheet" href="css/estilo.css" />
 	
 </head>
 <%
@@ -40,28 +40,28 @@
 				<h3>${noticia.titulo}</h3>
 	  		</div>
 			<div class="card-body">
-			    <blockquote class="blockquote mb-0">
-			      <h6 class="lead">${noticia.texto}</h6>
-			    </blockquote>
+			      <p class="lead">${noticia.texto}</p>
 			</div>
 		</div>
 			<div class="card-body">
-				<h4>Comentários</h4>
+				<h3>Comentários</h3>
 				<%
 					for (Comentario cm : nts.listaNoticiasComentario(id)) {
 				%>
-				<p class="card-text">Nome: <%=cm.getNome()%></p>
-				<p class="card-text">Comentario: <%=cm.getTexto()%></p>
+				<p class="card-text"><%=cm.getNome()%></p>
+				<p class="card-text"><%=cm.getTexto()%></p>
 				<hr class="my-7">
 				<%
 					}
 				%>
 				<form action="addComent.do" method="GET">
-					<h6>Adicionar comentário:</h6>
+					<h4>Adicionar comentário:</h4>
 						Nome: <input type="text" class="form-control" id="nomeUser" name="nomeUser"> <br> 
 						Comentário: <input type="text" class="form-control" id="comentarioUser" name="comentarioUser"> <br> 
 						<input type='hidden' name='id' value='${noticia.id}'>
-						<input type="submit" class="btn btn-primary" type="submit" value="Enviar">
+						<p class="lead">
+							<input type="submit" id="enviar" class="btn btn-primary" type="submit" value="Enviar">
+						</p>
 				</form>
 			</div>
 	

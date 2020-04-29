@@ -44,6 +44,7 @@ public class NoticiaController extends HttpServlet {
 			String titulo = request.getParameter("titulo");
 			String descricao = request.getParameter("descricao");
 			String texto = request.getParameter("texto");
+			response.setContentType("text/html;ISO-8859-1");
 
 			Noticia noticia = new Noticia();
 			noticia.setTitulo(titulo);
@@ -77,30 +78,50 @@ public class NoticiaController extends HttpServlet {
 				requestDispatcher = request.getRequestDispatcher("notexisted.html");
 				requestDispatcher.forward(request, response);
 			} else {
-				response.setContentType("text/html;charset=UTF-8");
+				response.setContentType("text/html;ISO-8859-1");
 				PrintWriter out = response.getWriter();
 
 				out.println("<html>");
 				out.println("<head>");
-				out.println("<link rel='stylesheet'  href='<%=request.getContextPath()%>/css/estiloLista.css' />"); 
-				out.println("<link rel='stylesheet'  href='<%=request.getContextPath()%>/css/bootstrap.css' />");
+				
+				out.println("<style type=\"text/css\">");
+		        out.println("@import url(\"css/bootstrap.css\");");
+		        
+		        out.println("@import url(\"css/estilo.css\");");
+		        out.println("</style>");
+				
 				out.println("<title>Editar notícia</title>");
 				out.println("</head>");
-				out.println("<body bgcolor='lightblue'>");
-				out.println("<br><br><br>");
-				out.println("<form method='POST' action='update.do'>");
+				out.println("<body>");
+				
+				out.println("<div id='voltar' class='vertical-menu'>");
+				out.println("<a href='listagem.jsp' class='active'>Voltar para notícias</a>");
+				out.println("</div>");
 
-				out.println("<table align='center'>");
-				out.println("<tr><td>Noticia Id </td><td>" + noticia.getId() + "</td></tr>");
-				out.println("<input type='hidden' name='id' value='" + noticia.getId() + "'/>");
-				out.println("<tr><td>Titulo</td><td><input type='text' name='titulo' value='" + noticia.getTitulo()
-						+ "'</td></tr>");
-				out.println("<tr><td>Descrição</td><td><input type='text' name='descricao' value='"
-						+ noticia.getDescricao() + "'</td></tr>");
-				out.println("<tr><td>Texto</td><td><input type='text' name='texto' value='" + noticia.getTexto()
-						+ "'</td></tr>");
-				out.println("<tr><td><input type='submit' value='Atualizar'/></td></tr>");
-				out.println("</table></form></body></html>");
+				out.println("<h2>Editar Notícia</h2>");
+
+				out.println("<form method='POST' action='update.do'>");
+				out.println("<div class='form-group'>");
+				out.println("<label for='tituloNoticia'>Noticia Id</label>" + noticia.getId());
+				out.println("<input type='hidden' name='id' value='" + noticia.getId() + "' class='form-control'>");
+				out.println("</div>");
+				out.println(" <div class='form-group'>");
+				out.println("<label for='descricaoNoticia'>Título</label>");
+				out.println("<input type='text' name='titulo' id='tituloNoticia' value='" + noticia.getTitulo() + "'  class='form-control'>");
+				out.println("</div>");
+				out.println("<div class='form-group'>");
+				out.println("<label for='textoNoticia'>Descrição</label>");
+				out.println("<input class='form-control' type='text' id='descricaoNoticia' name='descricao' value='" + noticia.getDescricao() + "' rows='3'></textarea>");
+				out.println("</div>");
+				out.println("<div class='form-group'>");
+				out.println("<label for='textoNoticia'>Texto</label>");
+				out.println("<textarea type='text' class='form-control' name='texto' id='textoNoticia' rows='9'>" + noticia.getTexto() + "</textarea>");
+				out.println("</div>");
+				out.println("<div class='form-button'>");
+				out.println("<input type='submit' value='Atualizar' />");
+				out.println("</div>");
+				out.println("</form>");
+				out.println("</body></html>");
 			}
 		}
 
@@ -110,6 +131,7 @@ public class NoticiaController extends HttpServlet {
 			String titulo = request.getParameter("titulo");
 			String descricao = request.getParameter("descricao");
 			String texto = request.getParameter("texto");
+			response.setContentType("text/html;charset=ISO-8859-1");
 
 			Noticia noticia = new Noticia();
 			noticia.setId(id);
@@ -144,6 +166,7 @@ public class NoticiaController extends HttpServlet {
 			request.setAttribute("noticia", noticia);
 			requestDispatcher = request.getRequestDispatcher("listanoticia.jsp");
 			requestDispatcher.forward(request, response);
+			response.setContentType("text/html;charset=ISO-8859-1");
 
 		}
 		
@@ -152,7 +175,6 @@ public class NoticiaController extends HttpServlet {
 			String nomeUser = request.getParameter("nomeUser");
 			String comentarioUser = request.getParameter("comentarioUser");
 			NoticiaService nts = new NoticiaService();
-			
 
 			Comentario comentario = new Comentario();
 			comentario.setIdNoticia(id);
@@ -160,6 +182,7 @@ public class NoticiaController extends HttpServlet {
 			comentario.setTexto(comentarioUser);
 			
 			nts.criarComentario(comentario);
+			response.setContentType("text/html;charset=ISO-8859-1");
 			response.sendRedirect("noticia.do?id="+id);
 		}
 	}

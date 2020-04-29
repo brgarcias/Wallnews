@@ -14,7 +14,7 @@
 	crossorigin="anonymous">
 
 <!--estiloLista.css-->
-<link rel="stylesheet" href="css/estiloLista.css" />
+<link rel="stylesheet" href="css/estilo.css" />
 
 <title>Listagem</title>
 </head>
